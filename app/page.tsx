@@ -15,9 +15,9 @@ const base_url = "https://backend-lzw-ken.cyclic.app/api/compress"
 export default function Home() {
 
   const [textComp, setTextComp] = useState('');
-  const [responseData, setResponseData] = useState(null);
+  const [responseData, setResponseData] = useState<{ message: string } | null>(null);;
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setTextComp(event.target.value);
   };
 
@@ -55,11 +55,11 @@ export default function Home() {
 
   const updatedText = responseData ? responseData.message : '';
 
-  const handleButtonClickComp = () => {
+  const handleButtonClickComp = (event: React.MouseEvent<HTMLButtonElement>) => {
     fetchDataComp();
   };
 
-  const handleButtonClickDecomp = () => {
+  const handleButtonClickDecomp = (event: React.MouseEvent<HTMLButtonElement>) => {
     fetchDataDecomp();
   };
 
