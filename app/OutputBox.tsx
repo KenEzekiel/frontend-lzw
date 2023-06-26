@@ -7,7 +7,7 @@ export default function OutputBox(props: {value : string}) {
         <div className="parent">
             <p
                 placeholder=""
-                className="inputbox"
+                className="outputbox"
             >{props.value}</p>
         </div>
     )
