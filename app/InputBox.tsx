@@ -1,8 +1,14 @@
 import { useState } from "react"
 
 
-export default function InputBox(props: {value: String, onChange:(event: React.ChangeEvent<HTMLInputElement>) => void}) {
+export default function InputBox(props: {value: string, onChange:(event: React.ChangeEvent<HTMLInputElement>) => void}) {
     const [inputText, setInputText] = useState('')
+
+    const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        setInputText(event.target.value);
+        props.onChange(event); // Call the onChange prop to pass the event to the parent component
+      };
+
     return (
         <div className="parent">
             <input
@@ -11,7 +17,7 @@ export default function InputBox(props: {value: String, onChange:(event: React.C
                 value={inputText}
                 placeholder="Input Text"
                 onChange={
-                    (e) => setInputText(e.target.value)
+                    handleInputChange
                 }
                 className="inputbox"
             />

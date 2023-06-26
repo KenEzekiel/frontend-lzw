@@ -15,15 +15,18 @@ const base_url = "https://backend-lzw-ken.cyclic.app"
 export default function Home() {
 
   const [textComp, setTextComp] = useState('');
-  const [responseData, setResponseData] = useState<string | null>(null);;
+  const [responseData, setResponseData] = useState<string>('');
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTextComp(event.target.value);
+    const inputValue = event.target.value;
+    setTextComp(inputValue);
   };
 
   const fetchDataComp = async () => {
     try {
-      const response = await fetch(`${base_url}/api/compress/comp/${textComp}`);
+      console.log("fetching data comp")
+      const encodedTextComp = encodeURIComponent(textComp);
+      const response = await fetch(`${base_url}/api/compress/comp/${encodedTextComp}`);
       const textData = await response.text();
       setResponseData(textData);
     } catch (error) {
@@ -33,7 +36,9 @@ export default function Home() {
 
   const fetchDataDecomp = async () => {
     try {
-      const response = await fetch(`${base_url}/api/compress/decomp/${textComp}`);
+      console.log("fetching data decomp")
+      const encodedTextComp = encodeURIComponent(textComp);
+      const response = await fetch(`${base_url}/api/compress/decomp/${encodedTextComp}`);
       const textData = await response.text();
       setResponseData(textData);
     } catch (error) {
@@ -53,35 +58,35 @@ export default function Home() {
   const updatedText = responseData ? responseData : '';
 
   const handleButtonClickComp = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("button click compress")
+    console.log("button click compress", textComp)
     fetchDataComp();
   };
 
   const handleButtonClickDecomp = (event: React.MouseEvent<HTMLButtonElement>) => {
-    console.log("button click decompress")
+    console.log("button click decompress", textComp)
     fetchDataDecomp();
   };
 
   return (
-    <div>
+    <>
       <head>
         <title>LZW Algorithm Compressor</title>
-        <Image src={icon} alt="icon"></Image>
       </head>
-      <Navbar/>
-      <main className="flex min-h-screen flex-col items-center justify-between p-24">
+      <body>
+        <Navbar/>
+        <main className="flex min-h-screen flex-col items-center justify-between p-24">
       
-        <h1 className="text-7xl">LZW Algorithm Compressor</h1>
+          <h1 className="text-7xl">LZW Algorithm Compressor</h1>
 
-        <InputBox value={textComp} onChange={handleInputChange}></InputBox>
-        <OutputBox value={updatedText}></OutputBox>
-        <div className="buttons">
-          <Compress onClick={handleButtonClickComp}></Compress>
-          <Decompress onClick={handleButtonClickDecomp}></Decompress>
-        </div>
-      
-    </main>
-    </div>
+          <InputBox value={textComp} onChange={handleInputChange}></InputBox>
+          <OutputBox value={responseData}></OutputBox>
+          <div className="buttons">
+            <Compress onClick={handleButtonClickComp}></Compress>
+            <Decompress onClick={handleButtonClickDecomp}></Decompress>
+          </div>
+      </main>
+    </body>
+    </>
     
   )
 }
