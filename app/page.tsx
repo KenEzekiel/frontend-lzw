@@ -9,7 +9,7 @@ import Decompress from './Decompress'
 import icon from '../assets/text-format.png'
 import { useEffect, useState } from 'react';
 
-const base_url = "https://backend-lzw-ken.cyclic.app/api/compress"
+const base_url = "https://backend-lzw-ken.cyclic.app"
 
 
 export default function Home() {
@@ -23,7 +23,7 @@ export default function Home() {
 
   const fetchDataComp = async () => {
     try {
-      const response = await fetch(`/api/compress/comp/${textComp}`);
+      const response = await fetch(`${base_url}/api/compress/comp/${textComp}`);
       const jsonData = await response.json();
       setResponseData(jsonData);
     } catch (error) {
@@ -33,7 +33,7 @@ export default function Home() {
 
   const fetchDataDecomp = async () => {
     try {
-      const response = await fetch(`/api/compress/decomp/${textComp}`);
+      const response = await fetch(`${base_url}/api/compress/decomp/${textComp}`);
       const jsonData = await response.json();
       setResponseData(jsonData);
     } catch (error) {
