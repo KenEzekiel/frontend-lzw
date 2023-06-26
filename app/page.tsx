@@ -41,9 +41,6 @@ export default function Home() {
     }
   };
 
-  useEffect(() => {
-    fetchDataComp();
-  }, [textComp]);
 
   useEffect(() => {
     // Handle updates based on new response data

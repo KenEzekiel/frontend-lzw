@@ -6,9 +6,9 @@ export default function OutputBox(props: {value : String}) {
     return (
         <div className="parent">
             <p
-                placeholder="Input Text"
+                placeholder=""
                 className="inputbox"
-            />
+            >value<p/>
         </div>
     )
 }
