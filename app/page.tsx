@@ -8,6 +8,9 @@ import Compress from './Compress'
 import Decompress from './Decompress'
 import icon from '../assets/text-format.png'
 
+const base_url = "https://backend-lzw-ken.cyclic.app/api/compress"
+
+
 export default function Home() {
   return (
     <div>
@@ -23,7 +26,7 @@ export default function Home() {
         <InputBox></InputBox>
         <OutputBox></OutputBox>
         <div className="buttons">
-          <Compress></Compress>
+          <Compress onClick={() => console.log("anjay")}></Compress>
           <Decompress></Decompress>
         </div>
       

@@ -1,9 +1,9 @@
 
 
-export default function Compress() {
+export default function Compress(props: {onClick: () => void}) {
     return (
         <div className="compress-btn items-center p-500px">
-            <p className="btn-text ">Compress</p>
+            <button className="btn-text ">Compress</button>
         </div>
     )
 }

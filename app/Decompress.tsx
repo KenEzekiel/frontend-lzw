@@ -1,9 +1,9 @@
 
 
-export default function Compress() {
+export default function Decompress() {
     return (
         <div className="decompress-btn items-center p-500px">
-            <p className="btn-text ">Decompress</p>
+            <button className="btn-text ">Decompress</button>
         </div>
     )
 }
