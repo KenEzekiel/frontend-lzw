@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.css'
 import Navbar from './Navbar'
 import InputBox from './InputBox'
 import OutputBox from './OutputBox';
-import Compress from './compress'
+import Compress from './Compress'
 import Decompress from './Decompress'
 import icon from '../assets/text-format.png'
 
