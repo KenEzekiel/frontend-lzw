@@ -24,8 +24,8 @@ export default function Home() {
   const fetchDataComp = async () => {
     try {
       const response = await fetch(`${base_url}/api/compress/comp/${textComp}`);
-      const jsonData = await response.json();
-      setResponseData(jsonData);
+      const textData = await response.text();
+      setResponseData(textData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
@@ -34,8 +34,8 @@ export default function Home() {
   const fetchDataDecomp = async () => {
     try {
       const response = await fetch(`${base_url}/api/compress/decomp/${textComp}`);
-      const jsonData = await response.json();
-      setResponseData(jsonData);
+      const textData = await response.text();
+      setResponseData(textData);
     } catch (error) {
       console.error('Error fetching data:', error);
     }
