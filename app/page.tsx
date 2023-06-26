@@ -7,11 +7,62 @@ import OutputBox from './OutputBox';
 import Compress from './Compress'
 import Decompress from './Decompress'
 import icon from '../assets/text-format.png'
+import { useEffect, useState } from 'react';
 
 const base_url = "https://backend-lzw-ken.cyclic.app/api/compress"
 
 
 export default function Home() {
+
+  const [textComp, setTextComp] = useState('');
+  const [responseData, setResponseData] = useState(null);
+
+  const handleInputChange = (event) => {
+    setTextComp(event.target.value);
+  };
+
+  const fetchDataComp = async () => {
+    try {
+      const response = await fetch(`/api/compress/comp/${textComp}`);
+      const jsonData = await response.json();
+      setResponseData(jsonData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  const fetchDataDecomp = async () => {
+    try {
+      const response = await fetch(`/api/compress/decomp/${textComp}`);
+      const jsonData = await response.json();
+      setResponseData(jsonData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchDataComp();
+  }, [textComp]);
+
+  useEffect(() => {
+    // Handle updates based on new response data
+    if (responseData) {
+      // Perform any necessary operations with the updated response data
+      console.log('New response data:', responseData);
+    }
+  }, [responseData]);
+
+  const updatedText = responseData ? responseData.message : '';
+
+  const handleButtonClickComp = () => {
+    fetchDataComp();
+  };
+
+  const handleButtonClickDecomp = () => {
+    fetchDataDecomp();
+  };
+
   return (
     <div>
       <head>
@@ -23,11 +74,11 @@ export default function Home() {
       
         <h1 className="text-7xl">LZW Algorithm Compressor</h1>
 
-        <InputBox></InputBox>
-        <OutputBox></OutputBox>
+        <InputBox value={textComp} onChange={handleInputChange}></InputBox>
+        <OutputBox value={updatedText}></OutputBox>
         <div className="buttons">
-          <Compress onClick={() => console.log("anjay")}></Compress>
-          <Decompress></Decompress>
+          <Compress onClick={handleButtonClickComp}></Compress>
+          <Decompress onClick={handleButtonClickDecomp}></Decompress>
         </div>
       
     </main>

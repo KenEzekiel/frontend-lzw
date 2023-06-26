@@ -1,7 +1,7 @@
 import { useState } from "react"
 
 
-export default function InputBox() {
+export default function InputBox(props: {value: String, onChange:(event) => void}) {
     const [inputText, setInputText] = useState('')
     return (
         <div className="parent">
