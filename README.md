@@ -8,7 +8,7 @@ This project is a LZW compression algorithm web project, with the frontend and t
 
 ## Program Explanation
 
-The web offers 2 lines and 2 buttons, with the first line being an input line for sending input to the backend server, and the buttons correspond with the functions offered, which is Compression and Decompression.
+The web offers 2 lines and 4 buttons, with the first line being an input line for sending input to the backend server, and the buttons correspond with the functions offered, which is Compression, Decompression, Double Compression using LZW then RLE, and Double Decompression using RLE then LZW.
 
 ## Libraries Used
 
