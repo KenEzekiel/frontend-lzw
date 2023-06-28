@@ -8,6 +8,8 @@ import Compress from './Compress'
 import Decompress from './Decompress'
 import icon from '../assets/text-format.png'
 import { useEffect, useState } from 'react';
+import CompressRLE from './CompressRLE';
+import DecompressRLE from './DecompressRLE'
 
 const base_url = "https://backend-lzw-ken.cyclic.app"
 
@@ -34,6 +36,18 @@ export default function Home() {
     }
   };
 
+  const fetchDataCompRLE = async () => {
+    try {
+      console.log("fetching data comp RLE")
+      const encodedTextComp = encodeURIComponent(textComp);
+      const response = await fetch(`${base_url}/api/compress/comp/RLE/${encodedTextComp}`);
+      const textData = await response.text();
+      setResponseData(textData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
   const fetchDataDecomp = async () => {
     try {
       console.log("fetching data decomp")
@@ -46,6 +60,17 @@ export default function Home() {
     }
   };
 
+  const fetchDataDecompRLE = async () => {
+    try {
+      console.log("fetching data decomp RLE")
+      const encodedTextComp = encodeURIComponent(textComp);
+      const response = await fetch(`${base_url}/api/compress/decomp/RLE/${encodedTextComp}`);
+      const textData = await response.text();
+      setResponseData(textData);
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
 
   useEffect(() => {
     // Handle updates based on new response data
@@ -67,6 +92,16 @@ export default function Home() {
     fetchDataDecomp();
   };
 
+  const handleButtonClickCompRLE = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("button click compress RLE", textComp)
+    fetchDataCompRLE();
+  };
+
+  const handleButtonClickDecompRLE = (event: React.MouseEvent<HTMLButtonElement>) => {
+    console.log("button click decompress RLE", textComp)
+    fetchDataDecompRLE();
+  };
+
   return (
     <>
       <head>
@@ -83,6 +118,10 @@ export default function Home() {
           <div className="buttons">
             <Compress onClick={handleButtonClickComp}></Compress>
             <Decompress onClick={handleButtonClickDecomp}></Decompress>
+          </div>
+          <div className="buttons">
+            <CompressRLE onClick={handleButtonClickCompRLE}></CompressRLE>
+            <DecompressRLE onClick={handleButtonClickDecompRLE}></DecompressRLE>
           </div>
       </main>
     </body>
